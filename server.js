@@ -13,21 +13,20 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/products', require('./api/product/productRoutes'));
 // app.use('/api/users', require('./api/user/userRoutes'));
 
 // Serve frontend
-// if (process.env.NODE_ENV == 'production') {
-app.use(express.static('public'));
-
-app.get('/**', (req, res) => {
-  res.sendFile(
-    path.join(__dirname, 'public', 'index.html')
-  );
-});
-// } 
+if (process.env.NODE_ENV == 'production') {
+  app.use(express.static('public'));
+  app.get('/**', (req, res) => {
+    res.sendFile(
+      path.join(__dirname, 'public', 'index.html')
+    );
+  });
+}
 
 app.use(errorHandler);
 

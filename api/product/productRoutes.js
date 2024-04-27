@@ -9,9 +9,10 @@ const {
 
 } = require('./productController')
 
-const { protect } = require('../../middleware/authMiddleware')
+// const { protect } = require('../../middleware/authMiddleware')
 
-router.route('/').get(getProducts).post(protect, addProduct)
-router.route('/:id').delete(protect, deleteProduct).put(protect, updateProduct).get(protect, getProductById)
+router.route('/').get(getProducts)
+// .post(protect, addProduct)
+// router.route('/:id').delete(protect, deleteProduct).put(protect, updateProduct).get(protect, getProductById)
 
 module.exports = router

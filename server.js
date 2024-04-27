@@ -11,12 +11,12 @@ var cors = require('cors');
 connectDB();
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/products', require('./api/product/productRoutes'));
-app.use('/api/users', require('./api/user/userRoutes'));
+// app.use('/api/users', require('./api/user/userRoutes'));
 
 // Serve frontend
 // if (process.env.NODE_ENV == 'production') {

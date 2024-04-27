@@ -7,6 +7,7 @@ const User = require("../../models/userModel");
 // @route   GET /api/products
 // @access  Private
 const getProducts = asyncHandler(async (req, res) => {
+  console.log(req);
   const { sort, byStock, byFastDelivery, byRating, itemsPerPage, pageNum, searchQuery } = req.query;
   const pipline = [
     {

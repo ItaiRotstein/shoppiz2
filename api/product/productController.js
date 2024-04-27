@@ -7,8 +7,16 @@ const User = require("../../models/userModel");
 // @route   GET /api/products
 // @access  Private
 const getProducts = asyncHandler(async (req, res) => {
-  console.log(req);
-  const { sort, byStock, byFastDelivery, byRating, itemsPerPage, pageNum, searchQuery } = req.query;
+  const {
+    sort,
+    byStock,
+    byFastDelivery,
+    byRating,
+    itemsPerPage,
+    pageNum,
+    searchQuery
+  } = req.query;
+  
   const pipline = [
     {
       $facet: {
@@ -18,7 +26,7 @@ const getProducts = asyncHandler(async (req, res) => {
     },
   ];
   if (searchQuery) {
-    pipline.unshift({ $match: { name: { $regex:'.*' + searchQuery + '.*',$options: 'i' } } });
+    pipline.unshift({ $match: { name: { $regex: '.*' + searchQuery + '.*', $options: 'i' } } });
   }
   if (sort) {
     const sortOrder = sort === 'lowtohigh' ? 1 : -1;

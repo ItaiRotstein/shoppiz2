@@ -7,7 +7,6 @@ const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 var cors = require('cors');
 
-
 connectDB();
 
 const app = express();
@@ -16,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/products', require('./api/product/productRoutes'));
-// app.use('/api/users', require('./api/user/userRoutes'));
+app.use('/api/users', require('./api/user/userRoutes'));
 
 // Serve frontend
 if (process.env.NODE_ENV == 'production') {
